@@ -15,3 +15,14 @@ services:
       # Persist the cache database so we don't spam GitHub API on restarts
       - ./data:/app/data
     restart: unless-stopped
+
+  adb:
+    image: barnybbb/adb-hass-androidtv:latest
+    container_name: adb
+    ports:
+      - 5037:5037
+    environment:
+      - TZ=America/Vancouver
+      - PUID=1000
+      - PGID=1000
+    restart: unless-stopped

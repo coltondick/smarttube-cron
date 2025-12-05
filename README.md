@@ -17,7 +17,7 @@ The container runs a Python script on a schedule (default is 3 AM). Here is the 
 You need a few things to get this running:
 
 - **Docker:** Installed on your server or NAS.
-- **An ADB Server:** This container relies on a separate ADB connection to talk to your TV. The script is hardcoded to look for a host named `adb` on port `5037`. You should run an ADB container in the same stack or network.
+- **An ADB Server:** This container relies on a separate ADB connection to talk to your TV. The script is hardcoded to look for a host named `adb` on port `5037`. The default `docker-compose.yaml` included the required ADB server container.
 
 ## Quick Start
 
@@ -46,6 +46,17 @@ services:
     volumes:
       # This saves the cache database so it survives restarts
       - ./data:/app/data
+    restart: unless-stopped
+
+  adb:
+    image: barnybbb/adb-hass-androidtv:latest
+    container_name: adb
+    ports:
+      - 5037:5037
+    environment:
+      - TZ=America/Vancouver
+      - PUID=1000
+      - PGID=1000
     restart: unless-stopped
 ```
 
