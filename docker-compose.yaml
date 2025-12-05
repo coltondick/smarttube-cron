@@ -1,0 +1,17 @@
+services:
+  smarttube-cron:
+    image: ghcr.io/coltondick/smarttube-cron:latest
+    container_name: smarttube-cron
+    environment:
+      # REQUIRED: The IP address of your Android TV
+      - DEVICE=192.168.1.50
+      # OPTIONAL: When to run the check (Standard cron syntax). Defaults to 3 AM.
+      - CRON_SCHEDULE=0 3 * * *
+      # OPTIONAL: Set your timezone so the schedule runs at your local time
+      - TZ=America/Vancouver
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      # Persist the cache database so we don't spam GitHub API on restarts
+      - ./data:/app/data
+    restart: unless-stopped
