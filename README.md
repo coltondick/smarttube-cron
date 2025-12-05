@@ -58,6 +58,20 @@ services:
 | `TZ`            | Your timezone (e.g., `America/Vancouver`).             |
 | `PUID`/`PGID`   | User and Group IDs for file permissions.               |
 
+## First Run: Authorization
+
+Since this runs in the background you need to do this manually once to authorize the ADB connection to your device.
+
+1.  Start the container: `docker compose up -d`
+2.  Run this command to force a connection attempt:
+    ```bash
+    docker exec -it smarttube-cron sh -c 'adb -H adb -P 5037 connect $DEVICE'
+    ```
+3.  Check your TV screen immediately.
+4.  Check the box **"Always allow from this computer"** and select **Allow**.
+
+If you don't do this, the script will fail every night because it's unauthorized.
+
 ## Troubleshooting
 
 - **Connection Refused:** If the logs say it can't connect, check your ADB container. The Python script specifically looks for a host named `adb`. If your ADB service is named something else in Docker, you'll need to rename it or link it.
