@@ -17,7 +17,7 @@ The container runs a Python script on a schedule (default is 3 AM). Here is the 
 You need a few things to get this running:
 
 - **Docker:** Installed on your server or NAS.
-- **An ADB Server:** This container relies on a separate ADB connection to talk to your TV. The script is hardcoded to look for a host named `adb` on port `5037`. The default `docker-compose.yaml` included the required ADB server container.
+- **An ADB Server:** This container relies on a separate ADB connection to talk to your TV. The script is hardcoded to look for a host named `adb` on port `5037`. The default `docker-compose.yaml` includes the required ADB server container.
 
 ## Quick Start
 
