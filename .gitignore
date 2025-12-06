@@ -1,0 +1,13 @@
+# Local Data & Keys
+data/
+adb_keys/
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# Mac System Files
+.DS_Store
+
+# Environment variables
+.env
